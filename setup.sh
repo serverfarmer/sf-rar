@@ -2,10 +2,13 @@
 
 # TODO: discover the latest available RAR version automatically (currently hardcoded)
 # http://rarlab.com/download.htm
-VERSION="5.3.0"
+VERSION="5.4.0"
 
 
-if [ "`uname -m`" = "x86_64" ]; then
+if [ "`uname`" != "Linux" ]; then
+	echo "skipping rar setup, unsupported system"
+	exit 0
+elif [ "`uname -m`" = "x86_64" ]; then
 	FILE="rarlinux-x64-$VERSION.tar.gz"
 else
 	FILE="rarlinux-$VERSION.tar.gz"
