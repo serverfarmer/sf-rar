@@ -1,11 +1,15 @@
 #!/bin/sh
+. /opt/farm/scripts/init
+
 
 # TODO: discover the latest available RAR version automatically (currently hardcoded)
 # http://rarlab.com/download.htm
 VERSION="5.4.0"
 
 
-if [ "`uname`" != "Linux" ]; then
+if [ "$OSTYPE" = "freebsd" ]; then
+	FILE="rarbsd-$VERSION.tar.gz"
+elif [ "`uname`" != "Linux" ]; then
 	echo "skipping rar setup, unsupported system"
 	exit 0
 elif [ "`uname -m`" = "x86_64" ]; then
@@ -22,5 +26,8 @@ wget "http://rarlab.com/rar/$FILE"
 tar xzf $FILE
 rm -f $FILE
 cd rar
+if [ "$OSVER" = "freebsd-9" ]; then
+    mv -f rar_static rar
+fi
 make
 cd "$DIR"
