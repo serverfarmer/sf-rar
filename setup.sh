@@ -4,7 +4,7 @@
 
 # TODO: discover the latest available RAR version automatically (currently hardcoded)
 # http://rarlab.com/download.htm
-VERSION="5.4.0"
+VERSION="5.5.0"
 
 
 if [ "$OSTYPE" = "freebsd" ]; then
