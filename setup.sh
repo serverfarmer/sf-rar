@@ -22,7 +22,7 @@ rm -rf /tmp/rar /tmp/$FILE
 
 DIR="`pwd`"
 cd /tmp
-wget "http://rarlab.com/rar/$FILE"
+wget "https://rarlab.com/rar/$FILE"
 tar xzf $FILE
 rm -f $FILE
 cd rar
