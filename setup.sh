@@ -9,7 +9,7 @@ VERSION="5.5.0"
 
 if [ "$OSTYPE" = "freebsd" ]; then
 	FILE="rarbsd-$VERSION.tar.gz"
-elif [ "`uname`" != "Linux" ]; then
+elif [ "$HWTYPE" = "oem" ] || [ "`uname`" != "Linux" ]; then
 	echo "skipping rar setup, unsupported system"
 	exit 0
 elif [ "`uname -m`" = "x86_64" ]; then
@@ -26,7 +26,7 @@ wget "https://rarlab.com/rar/$FILE"
 tar xzf $FILE
 rm -f $FILE
 cd rar
-if [ "$OSVER" = "freebsd-9" ]; then
+if [ "$OSVER" = "freebsd-9" ] && [ -f rar_static ]; then
     mv -f rar_static rar
 fi
 make
