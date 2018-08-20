@@ -1,13 +1,12 @@
 #!/bin/sh
 . /opt/farm/scripts/init
 
+VERSION=`/opt/farm/ext/rar/get-rar-version.sh`
 
-# TODO: discover the latest available RAR version automatically (currently hardcoded)
-# http://rarlab.com/download.htm
-VERSION="5.5.0"
-
-
-if [ "$OSTYPE" = "freebsd" ]; then
+if [ "$VERSION" = "" ]; then
+	echo "skipping rar setup, unable to detect current version"
+	exit 0
+elif [ "$OSTYPE" = "freebsd" ]; then
 	FILE="rarbsd-$VERSION.tar.gz"
 elif [ "$HWTYPE" = "oem" ] || [ "`uname`" != "Linux" ]; then
 	echo "skipping rar setup, unsupported system"
