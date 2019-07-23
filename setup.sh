@@ -1,6 +1,8 @@
 #!/bin/sh
 . /opt/farm/scripts/init
 
+/opt/farm/ext/packages/utils/install.sh make wget curl
+
 VERSION=`/opt/farm/ext/rar/get-rar-version.sh`
 
 if [ "$VERSION" = "" ]; then
